@@ -1,0 +1,15 @@
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\SnapShotApp.exe.config
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\SnapShotApp.exe
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\SnapShotApp.pdb
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\Microsoft.WindowsAPICodePack.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\Microsoft.WindowsAPICodePack.Sensors.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\WebDriver.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\WebDriver.Support.dll
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\WebDriver.xml
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\bin\Release\WebDriver.Support.xml
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\obj\Release\SnapShotApp.csprojResolveAssemblyReference.cache
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\obj\Release\SnapShotApp.exe
+C:\Users\A02237923\Documents\Exclusions_Code\SnapShot_OIG\SnapShotApp\obj\Release\SnapShotApp.pdb

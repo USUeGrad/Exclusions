@@ -40,7 +40,7 @@ namespace SnapShotApp
                 Verify(person, screenShot, url, verifyList);                                                //take screenshots of details
                 //System.Threading.Thread.Sleep(250);
             }
-            _driver.Close();
+            _driver.Quit();
         }
 
         private void Initialize(string url)

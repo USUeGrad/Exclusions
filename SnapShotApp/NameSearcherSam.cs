@@ -35,7 +35,7 @@ namespace SnapShotApp
                 screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (SAM)", false, "SAM");     //run screenshot of found names
                 ClickViewDetails(screenShot, person, verifyList);                                                               //run screenshot of details
             }
-            _driver.Close();
+            _driver.Quit();
         }
 
         private void Initialize(string url)
