@@ -1,6 +1,6 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -21,7 +21,7 @@ namespace SnapShotApp
             _verifyList = new VerifyList();
         }
 
-        public void CountNames(string file)
+        public void CountNames()
         {
             _verifyList.AddToVerifyList("Total number of names checked: " + (_parse.counter - 1));
         }
@@ -33,14 +33,14 @@ namespace SnapShotApp
             _verifyList.AddToVerifyList("----- https://exclusions.oig.hhs.gov -----");
             foreach (var person in _parse.PeopleList)
             {
-                Console.WriteLine("[OIG]: " + person.LastName + ", " + person.FirstName);                   //logging. Makes sure the user knows something is happening
-                _driver.Url = "https://exclusions.oig.hhs.gov";                                             //visit OIG exclusions website
-                _driver.FindElement(By.Id("ctl00_cpExclusions_txtSPLastName")).SendKeys(person.LastName);   //enter last name
-                _driver.FindElement(By.Id("ctl00_cpExclusions_txtSPFirstName")).SendKeys(person.FirstName); //enter first name
-                System.Threading.Thread.Sleep(100);                                                         //wait a moment for typing to finish
-                _driver.FindElement(By.Id("ctl00_cpExclusions_ibSearchSP")).Click();                        //search for name
-                _screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (OIG)", false, "OIG"); //run screenshot of results
-                OIGVerify(person);                                                //take screenshots of details
+                Console.WriteLine("[OIG]: " + person.LastName + ", " + person.FirstName);                                       //logging. Ensures the user knows something is happening
+                _driver.Url = "https://exclusions.oig.hhs.gov";                                                                 //visit OIG exclusions website
+                _driver.FindElement(By.Id("ctl00_cpExclusions_txtSPLastName")).SendKeys(person.LastName);                       //enter last name
+                _driver.FindElement(By.Id("ctl00_cpExclusions_txtSPFirstName")).SendKeys(person.FirstName);                     //enter first name
+                System.Threading.Thread.Sleep(100);                                                                             //wait a moment for typing to finish
+                _driver.FindElement(By.Id("ctl00_cpExclusions_ibSearchSP")).Click();                                            //search for name
+                _screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (OIG)", false, "OIG");    //run screenshot of results
+                OIGVerify(person);                                                                                              //take screenshots of details
             }
             _driver.Quit();
         }
@@ -62,14 +62,14 @@ namespace SnapShotApp
                 System.Threading.Thread.Sleep(100);                                                                             //wait a moment
                 _driver.FindElement(By.XPath("//*[contains(@title, 'Select to Continue')]")).Click();                           //confirm
                 _screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (SAM)", false, "SAM");    //run screenshot of found names
-                SAMVerify(person);                                                                                  //run screenshot of details
+                SAMVerify(person);                                                                                              //run screenshot of details
             }
             _driver.Quit();
         }
 
         public void WriteSummary(string folderLocation)
         {
-            using (var file = new System.IO.StreamWriter(folderLocation + "@-SUMMARY-@.txt"))
+            using (var file = new System.IO.StreamWriter(folderLocation + "!! SUMMARY !!.txt"))
             {
                 foreach (var line in _verifyList.ReturnVerifyList())
                 {
@@ -94,8 +94,22 @@ namespace SnapShotApp
             chromeDriverService.HideCommandPromptWindow = true;                     //hide chromedriver command window.
             chromeDriverService.SuppressInitialDiagnosticInformation = true;        //hide chromedriver setup info
 
-            _driver = new ChromeDriver(chromeDriverService, chromeOptions);              //create driver with above arguments
-            _driver.Url = url;                                      //visit given url
+            try
+            {
+                _driver = new ChromeDriver(chromeDriverService, chromeOptions) {Url = url};   //create driver with above arguments
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Chromedriver out of date. To fix: \n" +
+                    "1. Run CleanChrome.bat from Data folder.\n" +
+                    "2. Download latest ChromeDriver file from chromedriver.chromium.org and put it in Data folder.");
+                System.Environment.Exit(0);
+            }
+            catch (OpenQA.Selenium.WebDriverException)
+            {
+                MessageBox.Show("Chrome out of date. Update Chrome by going to Chrome > Settings > About Chrome.");
+                System.Environment.Exit(0);
+            }
         }
 
         private void OIGVerify(Person person)
@@ -112,7 +126,7 @@ namespace SnapShotApp
                 {
                     _verifyList.AddToVerifyList("[" + person.LastName + ", " + person.FirstName + "]: No DOB Given - Check screenshots to verify");
                 }
-                for (var i = 2; i < 10; i++)    //click and screenshot each verify button
+                for (int i = 2; i < 10; i++)    //click and screenshot up to 8 verify buttons
                 {
                     if (_driver.PageSource.Contains("ctl00_cpExclusions_gvEmployees_ctl0" + i + "_cmdVerify2"))
                     {
