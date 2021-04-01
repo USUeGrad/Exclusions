@@ -1,7 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using System.Windows.Forms;
 using System;
 using System.IO;
+using System.Windows.Forms;
 
 
 /*
@@ -10,40 +10,62 @@ using System.IO;
 
 namespace SnapShotApp
 {
-    class SelectFolder
-    {
-        public string SelectedFolder;
-        private static string currentDate;
+	class SelectFolder
+	{
+		public string SelectedFolder;
+		private static string currentDate;
 
-        public SelectFolder()
-        {
-            var chooseFolder = new CommonOpenFileDialog();
-            chooseFolder.IsFolderPicker = true;
-            chooseFolder.Title = "Choose output folder";
-            
-            if (chooseFolder.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                SelectedFolder = chooseFolder.FileName;
-            }
-            if (SelectedFolder == null) //invalid CSV
-            {
-                MessageBox.Show("Please Select a Valid Folder");
-                System.Environment.Exit(0);
-            }
-            CreateFolderWithTodaysDate();
-        }
 
-        public void CreateFolderWithTodaysDate()
-        {
-            DateTime today = DateTime.Today; // As DateTime
-            currentDate = today.ToString("MM-dd-yyyy");
+		public SelectFolder(string fileName)
+		{
+			DateTime today = DateTime.Today; // As DateTime
+			currentDate = today.ToString("MM-dd-yyyy");
+			if (fileName.EndsWith("BiomedicalClinic.csv")) {
+				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Biomedical Clinic");
 
-            Directory.CreateDirectory(SelectedFolder + "\\" + currentDate);
-        }
+			}
+			else if (fileName.EndsWith("Clinical.csv")) {
+				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Clinical");
 
-        public string FolderPath()
-        {
-            return SelectedFolder + "\\" + currentDate + "\\";
-        }
-    }
+			}
+			else if (fileName.EndsWith("OtherUsers.csv")) {
+				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "OtherUsers");
+
+			}
+			else if (fileName.EndsWith("ProviderExclusionReport.csv")) {
+				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Provider");
+
+			}
+			else if (fileName.EndsWith("UserExclusionReport.csv")) {
+				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "User");
+
+			}
+			else if (fileName.EndsWith("Sample.csv"))
+			{
+				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Sample");
+
+			}
+			else
+			{
+				var chooseFolder = new CommonOpenFileDialog();
+				chooseFolder.IsFolderPicker = true;
+				chooseFolder.Title = "Choose output folder for " + fileName;
+				if (chooseFolder.ShowDialog() == CommonFileDialogResult.Ok)
+				{
+					SelectedFolder = chooseFolder.FileName;
+				}
+				if (SelectedFolder == null) //invalid folder
+				{
+					MessageBox.Show("Please Select a Valid Folder");
+					System.Environment.Exit(0);
+				}
+			}
+			Directory.CreateDirectory(SelectedFolder + "\\" + currentDate);
+		}
+
+		public string FolderPath()
+		{
+			return SelectedFolder + "\\" + currentDate + "\\";
+		}
+	}
 }
