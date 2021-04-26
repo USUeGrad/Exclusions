@@ -6,23 +6,23 @@
 
 namespace SnapShotApp
 {
-    class VerifyList
-    {
-        private readonly List<string> _verifyList = new List<string>();
+	class VerifyList
+	{
+		private readonly List<string> _verifyList = new List<string>();
 
-        public void AddToVerifyList(string personName)
-        {
-            _verifyList.Add(personName);
-        }
+		public void AddToVerifyList(string personName)
+		{
+			_verifyList.Add(personName);
+		}
 
-        public void RemoveFromVerifyList(string personName)
-        {
-            _verifyList.Remove(personName);
-        }
+		public void RemoveFromVerifyList(string personName)
+		{
+			_verifyList.Remove(personName);
+		}
 
-        public List<string> ReturnVerifyList()
-        {
-            return _verifyList;
-        }
-    }
+		public List<string> ReturnVerifyList()
+		{
+			return _verifyList;
+		}
+	}
 }

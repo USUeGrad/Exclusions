@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 /*
  * opens dialogue for where to save screenshots
@@ -6,24 +9,25 @@
 
 namespace SnapShotApp
 {
-    class SelectFile
-    {
-        public string SelectedFile;
+	class SelectFile
+	{
+		public string SelectedFile;
 
-        public SelectFile()
-        {
-            OpenFileDialog chooseFile = new OpenFileDialog();
-            chooseFile.Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*";
-            chooseFile.Title = "Choose input file";
-            if (chooseFile.ShowDialog() == DialogResult.OK)
-            {
-                SelectedFile = chooseFile.FileName;
-            }
-            if (SelectedFile == null) //invalid CSV
-            {
-                MessageBox.Show("Please Select a Valid CSV File.");
-                System.Environment.Exit(0);
-            }
-        }
-    }
+		public SelectFile()
+		{
+			OpenFileDialog chooseFile = new OpenFileDialog();
+			chooseFile.Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*";
+			chooseFile.Title = "Choose input file";
+			if (chooseFile.ShowDialog() == DialogResult.OK)
+			{
+				SelectedFile = chooseFile.FileName;
+			}
+			if (SelectedFile == null) //invalid CSV
+			{
+				MessageBox.Show("Please Select a Valid CSV File.");
+				System.Environment.Exit(0);
+			}
+		}
+
+	}
 }
