@@ -16,7 +16,7 @@ namespace SnapShotApp
 			_folderDestination = folderDestination;
 		}
 
-		public void RunScreenShot(ref IWebDriver driver, string filename, bool verified, bool isSAM)
+		public void RunScreenShot(ref IWebDriver driver, string filename, bool verified)
 		{
 			var filenameDate = filename + "-" + System.DateTime.Now.ToString("MM_dd_yyyy");
 			var executor = (IJavaScriptExecutor)driver;
@@ -25,16 +25,8 @@ namespace SnapShotApp
 			{
 				if (verified)
 				{
-					if (isSAM)
-					{
-						//executor.ExecuteScript("document.body.style.zoom='125%'");
-						executor.ExecuteScript("window.scrollBy(0,600)");
-						System.Threading.Thread.Sleep(300);                         //additional info takes 1/4 second to unfold :/
-						executor.ExecuteScript("window.scrollBy(0,600)");
-					}
 					var screenshot = _screenshotHandler.GetScreenshot();
 					screenshot.SaveAsFile(_folderDestination + filenameDate + ".png", ScreenshotImageFormat.Png);
-					executor.ExecuteScript("document.body.style.zoom='100%'");
 				}
 				else
 				{
