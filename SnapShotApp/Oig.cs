@@ -20,7 +20,7 @@ namespace SnapShotApp
 				_driver.FindElement(By.Id("ctl00_cpExclusions_txtSPFirstName")).SendKeys(person.FirstName);                     //enter first name
 				System.Threading.Thread.Sleep(100);                                                                             //wait a moment for typing to finish
 				_driver.FindElement(By.Id("ctl00_cpExclusions_ibSearchSP")).Click();                                            //search for name
-				screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (OIG)", false);    //run screenshot of results
+				screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (OIG)");    //run screenshot of results
 				Verify(person, screenShot, verifyList);                                                                                              //take screenshots of details
 			}
 			_driver.Quit();
@@ -46,7 +46,7 @@ namespace SnapShotApp
 					{
 						_driver.FindElement(By.Id("ctl00_cpExclusions_gvEmployees_ctl0" + i + "_cmdVerify2")).Click();
 						//take a picture
-						screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - VERIFY_" + (i - 1) + " - (OIG)", true);
+						screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - VERIFY_" + (i - 1) + " - (OIG)");
 						//if DOB found, log screenshot DOB was found in
 						if (CheckForDOB)
 						{

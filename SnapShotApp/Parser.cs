@@ -40,7 +40,6 @@ namespace SnapShotApp
 			}
 		}
 
-
 		private void AssignInfoToPerson()
 		{
 			var nameString = _line.Split(',');

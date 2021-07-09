@@ -3,9 +3,8 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-
 /*
- * opens dialogue for where to save screenshots
+ * opens folder dialogue for where to save screenshots
  */
 
 namespace SnapShotApp
@@ -15,35 +14,28 @@ namespace SnapShotApp
 		public string SelectedFolder;
 		private static string currentDate;
 
-
 		public SelectFolder(string fileName)
 		{
-			DateTime today = DateTime.Today; // As DateTime
+			DateTime today = DateTime.Today;
 			currentDate = today.ToString("MM-dd-yyyy");
 			if (fileName.EndsWith("BiomedicalClinic.csv")) {
-				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Biomedical Clinic");
-
+				SelectedFolder = Directory.GetCurrentDirectory() + "\\" + "Biomedical Clinic";
 			}
 			else if (fileName.EndsWith("Clinical.csv")) {
-				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Clinical");
-
+				SelectedFolder = Directory.GetCurrentDirectory() + "\\" + "Clinical";
 			}
 			else if (fileName.EndsWith("OtherUsers.csv")) {
-				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "OtherUsers");
-
+				SelectedFolder = Directory.GetCurrentDirectory() + "\\" + "OtherUsers";
 			}
 			else if (fileName.EndsWith("ProviderExclusionReport.csv")) {
-				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Provider");
-
+				SelectedFolder = Directory.GetCurrentDirectory() + "\\" + "Provider";
 			}
 			else if (fileName.EndsWith("UserExclusionReport.csv")) {
-				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "User");
-
+				SelectedFolder = Directory.GetCurrentDirectory() + "\\" + "User";
 			}
 			else if (fileName.EndsWith("Sample.csv"))
 			{
-				SelectedFolder = (Directory.GetCurrentDirectory() + "\\" + "Sample");
-
+				SelectedFolder = Directory.GetCurrentDirectory() + "\\" + "Sample";
 			}
 			else
 			{

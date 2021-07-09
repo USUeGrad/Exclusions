@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace SnapShotApp
+﻿namespace SnapShotApp
 {
 	class NameSearch
 	{
@@ -40,7 +38,6 @@ namespace SnapShotApp
 					file.WriteLine(line);
 				}
 			}
-			//MessageBox.Show("Screenshots Complete!", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 		}
 	}
 }

@@ -1,10 +1,7 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
-using System.IO;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 /*
- * opens dialogue for where to save screenshots
+ * opens file dialogue for where to save screenshots
  */
 
 namespace SnapShotApp

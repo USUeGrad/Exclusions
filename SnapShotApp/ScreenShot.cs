@@ -16,23 +16,14 @@ namespace SnapShotApp
 			_folderDestination = folderDestination;
 		}
 
-		public void RunScreenShot(ref IWebDriver driver, string filename, bool verified)
+		public void RunScreenShot(ref IWebDriver driver, string filename)
 		{
 			var filenameDate = filename + "-" + System.DateTime.Now.ToString("MM_dd_yyyy");
-			var executor = (IJavaScriptExecutor)driver;
 			_screenshotHandler = driver as ITakesScreenshot;
 			if (_screenshotHandler != null)
 			{
-				if (verified)
-				{
-					var screenshot = _screenshotHandler.GetScreenshot();
-					screenshot.SaveAsFile(_folderDestination + filenameDate + ".png", ScreenshotImageFormat.Png);
-				}
-				else
-				{
-					var screenshot = _screenshotHandler.GetScreenshot();
-					screenshot.SaveAsFile(_folderDestination + filenameDate + ".png", ScreenshotImageFormat.Png);
-				}
+				var screenshot = _screenshotHandler.GetScreenshot();
+				screenshot.SaveAsFile(_folderDestination + filenameDate + ".png", ScreenshotImageFormat.Png);
 			}
 		}
 	}
