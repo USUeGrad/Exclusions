@@ -33,16 +33,22 @@ namespace SnapShotApp
 				MessageBox.Show("Chromedriver out of date. To fix: \n" +
 						"1. Run CleanChrome.bat from Data folder.\n" +
 						"2. Download latest ChromeDriver file from chromedriver.chromium.org and put it in Data folder.");
+				_driver.Quit();
+				System.Environment.Exit(0);
 			}
 			catch (OpenQA.Selenium.WebDriverException)
 			{
 				MessageBox.Show("Chrome out of date. Update Chrome by going to Chrome > Settings > About Chrome.");
-			}
-			finally
-			{
 				_driver.Quit();
 				System.Environment.Exit(0);
 			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Error: " + e);
+				_driver.Quit();
+				System.Environment.Exit(0);
+			}
+			_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 			return _driver;
 		}
 	}

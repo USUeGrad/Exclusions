@@ -30,13 +30,13 @@ namespace SnapShotApp
 				var js = (IJavaScriptExecutor)_driver;
 				js.ExecuteScript("document.getElementById('formly_54_checkbox_exclusionClassificationIndividualWrapper_2').click();");
 				js.ExecuteScript("document.getElementsByClassName('usa-button')[10].click();");
-				//wait for animations to complete
-				System.Threading.Thread.Sleep(300);
-				_driver.FindElement(By.XPath("//*[contains(text(), 'Excluded Individual')]")).Click(); 
+				//driver waits up to 10 seconds for element to exist
+				_driver.FindElement(By.XPath("//*[contains(text(), 'Excluded Individual')]")).Click();
 				_driver.FindElement(By.Id("firstname")).SendKeys(person.FirstName);
 				_driver.FindElement(By.Id("lastname")).SendKeys(person.LastName);
 				_driver.FindElement(By.XPath("//*[contains(text(), 'Filter By Individual')]")).Click();
 				//wait for data to render
+				//could be done better using explicit wait
 				System.Threading.Thread.Sleep(500);
 				screenShot.RunScreenShot(ref _driver, person.LastName + "_" + person.FirstName + " - (SAM)");                                                                   
 			}
